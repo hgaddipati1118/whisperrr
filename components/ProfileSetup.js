@@ -223,7 +223,7 @@ export default function ProfileSetup(){
             return (
                 <div>
                                     <div className = "text-white text-xl text-center mt-5 mb-3">
-                    What is the lowest age you're willing to date?
+                    What is the lowest age you are willing to date?
                 </div>
             <div className = "grid grid-cols-3 place-content-center">
                 <div className = "w-24 mt-32 justify-self-end">
@@ -258,7 +258,7 @@ export default function ProfileSetup(){
             return (
             <div>
                                     <div className = "text-white text-xl text-center mt-5 mb-3">
-                    What is the highest age you're willing to date?
+                    What is the highest age you are willing to date?
                 </div>
             <div className = "grid grid-cols-3 place-content-center">
                 <div className = "w-24 mt-32 justify-self-end">

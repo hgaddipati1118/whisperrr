@@ -53,7 +53,7 @@ export default function Home({user}){
         return(
             <div className="grid grid-cols-1">
                 <Header />
-                <div className = "text-white text-center text-2xl py-6"> Right now we don't have a match for you :(</div>
+                <div className = "text-white text-center text-2xl py-6"> Right now we do not have a match for you :(</div>
                 <div className = "text-white text-center text-xl w-1/3 mx-auto"> To improve your chances of getting a match answer some questions</div>
                 <Link className="justify-self-center bg-amber-700 w-1/3 mx-auto my-6 
                 py-3 rounded-lg text-xl text-center text-white" 
