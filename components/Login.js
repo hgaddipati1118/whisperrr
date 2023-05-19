@@ -162,7 +162,7 @@ export default function Login(){
         <div>
         <Title />
         <div className = "container mx-auto bg-gray-700 pt-8 pb-4 w-1/2 rounded-2xl">
-      <LoginInputHeaders text = "Enter OTP" />
+      <LoginInputHeaders text = "Enter One Time Password (OTP) from Email" />
       <input className="w-5/6 h-10 rounded-lg mx-12 px-3 mb-2" type="text"
       onChange = {updateOTP}
       value = {token}

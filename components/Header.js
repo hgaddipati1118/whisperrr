@@ -29,7 +29,7 @@ export default function Header(){
             <div className = "bg-white my-3 w-20 h-2 rounded-sm"/>
             <div className = "bg-white my-3 w-20 h-2 rounded-sm"/>
             </div>
-            <Title tailwind = "mt-3 ml-5" />
+           <Link href="/"> <Title tailwind = "mt-3 ml-5" /> </Link>
         </div>
            {showDropdown?dropdown:<div className ="absolute h-5 w-32" onMouseOver = {()=>setShowDropdown(true)} /> }
         </div>

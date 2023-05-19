@@ -3,7 +3,8 @@ const genderOptions = {
     "options" : [
     {"choiceName": "male", "choiceVal": "M"},
     {"choiceName": "female", "choiceVal": "F"},
-    {"choiceName": "non-binary", "choiceVal": "NB"}
+    {"choiceName": "non-binary", "choiceVal": "NB"},
+    {"choiceName": "other", "choiceVal":"O"}
 ]
 }
 export default genderOptions;

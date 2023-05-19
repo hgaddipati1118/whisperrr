@@ -63,7 +63,7 @@ export default function Home({user}){
     } else if(stage == 2){
         return (
         <div>
-            <Signout />
+            <Header />
             <Conversation />
         </div>
         );

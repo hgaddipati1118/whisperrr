@@ -191,7 +191,8 @@ export default function ProfileSetup(){
                 </div>
             )
         }
-
+        let temp = genderOptions;
+        temp.question = "Select the genders you're willing to date";
         //Enter preferred gender
         if(stage == 2){
             return(
@@ -199,7 +200,7 @@ export default function ProfileSetup(){
                 <div className = "w-24 mt-32 justify-self-end">
                     <img className = "flex-none" onClick = {() => moveNextStage(-1)} src = "left_chevron.png" />
                 </div>
-                <Multiplecheckbox questionInfo = {genderOptions} value = {preferred_gender} setValue = {(val) => setPreferredGender(val)} />
+                <Multiplecheckbox questionInfo = {temp} value = {preferred_gender} setValue = {(val) => setPreferredGender(val)} />
                 <div className = "w-24 mt-32">
                     <img className = "flex-none" onClick = {() => moveNextStage(1)} src = "right_chevron.png" />
                 </div>
