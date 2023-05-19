@@ -3,11 +3,10 @@ import {useState, useEffect, useRef} from "react";
 // get our fontawesome imports
 import { faRocket } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Loading from "@/components/Loading";
 import Message from "@/components/Message";
-export default function Conversation(){
+export default function Conversation({user}){
     const[loading, setLoading] = useState(true);
-    const[user, setUser] = useState();
-    const[messages, setMessages] = useState([]);
     const[messageHTML, setMessageHTML] = useState();
     const[text, setText] = useState("");
     const[input, setInput] = useState("");
@@ -38,14 +37,13 @@ export default function Conversation(){
     }
 
     async function getMessages(){
-        let user = await getUserProfileData(supabase);
-        setUser(user);
         setConvId(user["conv_id"]);
         const { data, error } = await supabase
         .from('messages')
         .select('*')
-        .eq("conv_id",conv_id);
-        setMessages(data);
+        .eq("conv_id",user["conv_id"]);
+        console.log(user);
+        console.log(data,error);
         //Now to turn messages data into html
         if(data != null){
             let temp = data.map((msg, i)=>{
@@ -55,6 +53,7 @@ export default function Conversation(){
                 setMessageHTML(temp);
             }
         }
+        setLoading(false);
         console.log(messageHTML);
     }
 
@@ -68,6 +67,11 @@ export default function Conversation(){
     useEffect(() => {
         scrollToBottom()
       }, [messageHTML]);
+    if(loading){
+        return(
+            <Loading />
+        )
+    }
     return(
         <div>
             <div>

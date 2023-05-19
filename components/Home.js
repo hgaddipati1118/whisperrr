@@ -63,8 +63,8 @@ export default function Home({user}){
     } else if(stage == 2){
         return (
         <div>
-            <Header />
-            <Conversation />
+            <Header  />
+            <Conversation user = {profile} />
         </div>
         );
     }

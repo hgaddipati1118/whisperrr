@@ -86,7 +86,7 @@ export default function Login(){
       const { data, error} = await supabase.auth.getUser();
       if(!error){
         setStage(2);
-        setUser(data.user.id);
+        setUser(data.user);
       }
       setLoading(false);
     }
