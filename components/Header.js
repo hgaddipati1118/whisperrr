@@ -12,7 +12,7 @@ export default function Header(){
     }
     let dropdown = <div onMouseOver={()=>setShowDropdown(true)} onMouseLeave={()=>setShowDropdown(false)}
     className = "absolute text-white text-xl bg-gray-800 p-2 border-1 border-gray-700 my-1 ml-3 w-28 hover:cursor-default">
-         <div className = "hover:text-blue-600"> Chat </div>
+     <Link className = "hover:text-blue-600 " href="/"> Chat </Link>
     <Link className = "hover:text-blue-600 " href="/profile"> Profile </Link>
     <Link className = "hover:text-blue-600" href="/questions"> Questions </Link>
     <div className = "hover:text-blue-600"> History </div>

@@ -1,5 +1,8 @@
 import {supabase, refreshSession, getUserProfileData} from '@/helpers/supabaseHelpers';
-import {useState, useEffect} from "react";
+import {useState, useEffect, useRef} from "react";
+// get our fontawesome imports
+import { faRocket } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Message from "@/components/Message";
 export default function Conversation(){
     const[loading, setLoading] = useState(true);
@@ -9,7 +12,11 @@ export default function Conversation(){
     const[text, setText] = useState("");
     const[input, setInput] = useState("");
     const[conv_id, setConvId] = useState();
-    const[time, setTime] = useState();
+    const messagesEndRef = useRef(null)
+    //To autoscroll to bottom
+    const scrollToBottom = () => {
+        messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
+    }
 
     function updateText(e){
         setText(e.target.value);
@@ -51,11 +58,16 @@ export default function Conversation(){
     }
 
     useEffect(() => {
-        const interval = setInterval(() => setTime(Date.now()), 1000);
+        const interval = setInterval(() => getMessages(), 1000);
         return () => {
         clearInterval(interval);
         };
     }, []);
+
+    useEffect(() => {
+        scrollToBottom()
+      }, [messageHTML]);
+
     if(loading || messages == null || messages.length < 1){
         getMessages();
         return(
@@ -69,12 +81,13 @@ export default function Conversation(){
             <div>
             <div className="grid grid-cols-1 h-96 max-h-96 mx-32 mt-6 overflow-y-scroll flex flex-col-reverse">
             {messageHTML}
+            <div ref={messagesEndRef} />
             </div>
-            <div className = "flex mx-32 mt-6 bg-slate-700 py-2 pl-2">
-            <input className = "bg-slate-700" placeholder = "type message"
+            <div className = "flex mx-32 mt-6 bg-slate-700 pl-2">
+            <input className = "bg-slate-700 w-11/12 text-white py-2" placeholder = "type message"
             type ="text" value = {text} onChange = {updateText} />
-            <i class="fa-solid fa-user"></i>
-            <button onClick = {sendMessage}> send </button>
+            <button onClick = {sendMessage} className = "h-full w-12  ml-8"> 
+            <FontAwesomeIcon className = "h-8 mt-2 " icon={faRocket} /> </button>
             </div>
             </div>
         </div>
