@@ -52,11 +52,10 @@ export default function Conversation(){
                 return <Message  key={msg.sent_at} message = {msg} user = {user} />
             });
             if(messageHTML != temp){
-                setMessageHTML(messageHTML);
+                setMessageHTML(temp);
             }
         }
         console.log(messageHTML);
-        setLoading(false);
     }
 
     useEffect(() => {
@@ -69,15 +68,6 @@ export default function Conversation(){
     useEffect(() => {
         scrollToBottom()
       }, [messageHTML]);
-
-    if(loading || messages == null || messages.length < 1){
-        getMessages();
-        return(
-            <div>
-                loading...
-            </div>
-        )
-    };
     return(
         <div>
             <div>
