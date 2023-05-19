@@ -48,10 +48,12 @@ export default function Conversation(){
         setMessages(data);
         //Now to turn messages data into html
         if(data != null){
-            let messageHTML = data.map((msg, i)=>{
+            let temp = data.map((msg, i)=>{
                 return <Message  key={msg.sent_at} message = {msg} user = {user} />
             });
-            setMessageHTML(messageHTML);
+            if(messageHTML != temp){
+                setMessageHTML(messageHTML);
+            }
         }
         console.log(messageHTML);
         setLoading(false);
