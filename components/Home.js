@@ -64,7 +64,7 @@ export default function Home({user}){
         return (
         <div>
             <Header  />
-            <Conversation user = {profile} />
+            <Conversation user = {profile} setStage = {(stage) => setStage(stage)} />
         </div>
         );
     }

@@ -5,6 +5,7 @@ import questionList from '@/public/questionList.js';
 import Loading  from '@/components/Loading';
 import Multiplechoice from '@/components/Multiplechoice';
 import Header from '@/components/Header'
+import tailwindConfig from '@/tailwind.config';
 /*
  ** Stuff to do
  *** On load generate random number to pick question
@@ -16,6 +17,7 @@ import Header from '@/components/Header'
 */
 export  default function Questions(){
     const [question, setQuestion] = useState();
+    const [questionData, setQuestionData] = useState();
     const [profile, setProfile] = useState();
     const [loading,setLoading] = useState(true);
     useEffect(
@@ -31,10 +33,11 @@ export  default function Questions(){
         setLoading(false);
     }
 
-    function getQuestion(){
+    async function getQuestion(){
         let temp = questionList[Math.floor(Math.random()*questionList.length)];
         setQuestion(temp);
-        console.log(temp)
+        const{data, error} = await supabase.from("question_data").select("*").eq("id",temp.id).single();
+        setQuestionData(data);
     }
     if(loading){
         return(
@@ -47,10 +50,28 @@ export  default function Questions(){
         if(profile.id != null && ans != null){
             let oldQuestion = question;
             getQuestion();
-            const {error} = await supabase.from("questions").
+            await supabase.from("questions").
             insert({qID: oldQuestion.id, answer: ans, u_id: profile.id});
-            console.log("submitted");
+            //Time to update personality values of user
+            let option = questionData.data.options[parseInt(ans)];
+            let traits = option.optionTraits;
+            let userTraits = profile.personality;
+            console.log(questionData);
+            if(!userTraits){
+                userTraits = {};
+            }
+            console.log(userTraits);
+            traits.forEach(trait => {
+                if(!userTraits[trait.traitName] || userTraits[trait.traitName] == undefined || isNaN(userTraits[trait.traitName])){
+                    userTraits[trait.traitName] = 0;
+                }
+                userTraits[trait.traitName] += parseInt(trait.traitValue);
+            });
 
+            let temp = profile;
+            temp.personality = userTraits;
+            setProfile(temp);
+            await supabase.from("profiles").update({"personality": userTraits}).eq("id",profile.id);
         }
      } 
      let dummy = "";
