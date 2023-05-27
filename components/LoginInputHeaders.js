@@ -1,6 +1,6 @@
 export default function LoginInputHeaders({text}){
     return (<div className = "container "> 
-    <div className = "text-left mx-16 text-xl pb-4 text-white">
+    <div className = "text-left text-xl pb-4 text-white">
     {text}
     </div>
     </div>)

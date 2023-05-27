@@ -8,6 +8,8 @@ import { format } from 'date-fns';
 import { DayPicker } from 'react-day-picker';
 import genderOptions from '@/public/genderOptions';
 import 'react-day-picker/dist/style.css';
+import PickBirthday from "@/components/PickBirthday.js";
+import { move } from 'formik';
 export default function ProfileSetup(){
     // Stage 0 = change birthday
     // Stage 1 = change gender
@@ -25,11 +27,6 @@ export default function ProfileSetup(){
     const[profileLoaded, setProfileLoaded] = useState(false);
     const [minAgeError, setMinAgeError] = useState();
     const [maxAgeError, setMaxAgeError] = useState();
-    //Footer used for date picker
-    let footer = <p>Please pick a day.</p>;
-    if (selected) {
-        footer = <p>You picked {format(selected, 'PP')}.</p>;
-    }
     const[loading, setLoading] = useState(true);
 
     //function to update all profile data values
@@ -148,30 +145,8 @@ export default function ProfileSetup(){
         //Pick birthday
         if(stage == 0){
             return(<div> 
-                <div className = "text-center text-white text-xl mt-5 mb-3">
-                Select your birthday
-                </div>
-                <div className = "grid grid-cols-8" >
-                <div className = "col-span-5 pt-3 bg-amber-700 w-2/5 rounded-lg justify-self-end">
-                    <DayPicker
-                    mode="single"
-                    selected={selected}
-                    onSelect={setSelected}
-                    fixedWeeks
-                    fromYear = {1985}
-                    toYear = {2005}
-                    defaultMonth={new Date(2002, 8)}
-                    captionLayout = "dropdown-buttons"
-                    className = "text-l h-70"
-                    />
-                </div>
-                <div className = "w-24 mt-32 col-span-1">
-                    <img className = "flex-none" onClick = {() => moveNextStage(1)} src = "right_chevron.png" />
-                </div>
-                </div>
-                <div className = "text-center text-white">
-                {footer}
-                </div>
+                <PickBirthday moveNextStage={(inc) => moveNextStage(inc)} 
+                selected = {selected} setSelected={(selected) => setSelected(selected)} />
             </div>)
         }
 

@@ -2,7 +2,7 @@ import Title from "@/components/Title";
 import LoginInputHeaders from "@/components/LoginInputHeaders";
 import {useState} from "react";
 import { supabase } from "@/helpers/supabaseHelpers";
-export default function EnterOTP({sendOTP, setStage, setLoading, setEmail}){
+export default function EnterOTP({sendOTP, setStage, setLoading, getUser}){
     const [token, setToken] = useState();
     const[otpWork,setOtpWork] = useState("");
     //Updates OTP value based on user input
@@ -43,24 +43,32 @@ export default function EnterOTP({sendOTP, setStage, setLoading, setEmail}){
         }
       }
 
+    // Code to make enter key work
+    function checkEnter(e){
+      if(e.key == "Enter"){
+          checkOTP();
+      }
+    }
+
     return(
-        <div>
+        <div className = "mt-3">
         <Title />
-        <div className = "container mx-auto bg-gray-700 pt-8 pb-4 w-1/2 rounded-2xl">
+        <div className = "container mx-auto bg-gray-700 pt-8 pb-4 w-1/2 my-4 px-24 rounded-2xl">
       <LoginInputHeaders text = "Enter One Time Password (OTP) from Email" />
-      <input className="w-5/6 h-10 rounded-lg mx-12 px-3 mb-2" type="text"
+      <input className="w-full h-10 rounded-lg px-3 mb-2" type="text"
       onChange = {updateOTP}
       value = {token}
+      onKeyDown={checkEnter}
       placeholder = "******"
       />
-      <div className = "mx-12 text-blue-600 mb-2"> {otpWork} </div>
-      <div className = "flex">
-        <button className = "flex-none container ml-20 w-1/3 rounded-lg bg-orange-600" 
+      <div className = "text-blue-600 mb-2"> {otpWork} </div>
+      <div className = "flex justify-center">
+        <button className = "flex-none container py-1 w-1/3 rounded-lg bg-orange-600" 
         onClick = {sendOTP}> Resend Email </button>
-        <button className = "flex-none container ml-8 w-1/3 rounded-lg bg-orange-600"  
+        <button className = "flex-none container py-1 ml-8 w-1/3 rounded-lg bg-orange-600"  
         onClick = {checkOTP}> Login </button>
       </div>
-      <div className = "flex mt-5 mx-64">
+      <div className = "flex justify-center mt-5">
       <div onClick = {() => setStage(0)}
        className = "flex-none bg-white rounded-full w-5 h-5 ml-6 " />
       <div className = "flex-none bg-gray-400 rounded-full w-5 h-5 mx-5" />
