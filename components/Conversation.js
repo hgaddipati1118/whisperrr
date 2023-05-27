@@ -79,7 +79,7 @@ export default function Conversation({user, setStage}){
         const { data, error } = await supabase
         .from('messages')
         .select('*')
-        .eq("conv_id",user["conv_id"]);
+        .eq("conv_id",user["conv_id"]).order('sent_at', { ascending: true });
         //Now to turn messages data into html
         if(data != null){
             let temp = data.map((msg, i)=>{

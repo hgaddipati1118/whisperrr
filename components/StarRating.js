@@ -1,6 +1,20 @@
 import {useState} from "react";
-export default function StarRating ({rating, setRating}){
+export default function StarRating ({rating, setRating, size, fixed}){
     const [hover, setHover] = useState(0);
+    if(fixed){
+        return(
+            <div className="star-rating">
+        {[...Array(5)].map((star, index) => {
+          index += 1;
+          return (
+              <span className={(index <= rating? "text-yellow-300" :  "text-gray-500") +
+               " " + size}>&#9733;</span>
+
+          );
+        })}
+      </div>
+        ) 
+    }
     return (
       <div className="star-rating text-center">
         {[...Array(5)].map((star, index) => {
@@ -15,7 +29,7 @@ export default function StarRating ({rating, setRating}){
             >
               <span className={(((index <= rating) && (index <= hover)) ? "text-yellow-300" : 
               (((index <= hover) || (index <= rating)) ? "text-gray-300": "text-gray-500")) +
-               " text-8xl"}>&#9733;</span>
+               " " + size}>&#9733;</span>
             </button>
           );
         })}

@@ -292,9 +292,11 @@ export default function ProfileSetup(){
                 <div>
                         <div className = "text-white text-center text-4xl py-5"> {(bday && (preferred_gender.length > 0) && 
                         min_preferred_age && gender && max_preferred_age)?allGood:notAllGood}</div>
+                        <Link href = "/" className = "text-white text-center text-2xl"> 
                         <div className = "mx-auto bg-amber-700 rounded-xl py-5 w-1/4 text-center">
-                        <a href = "/" className = "text-white text-center text-2xl"> Save Profile </a>
+                        Save Profile 
                         </div>
+                        </Link>
                 </div>
                 </div>
                 )

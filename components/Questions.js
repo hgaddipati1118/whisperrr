@@ -5,7 +5,6 @@ import questionList from '@/public/questionList.js';
 import Loading  from '@/components/Loading';
 import Multiplechoice from '@/components/Multiplechoice';
 import Header from '@/components/Header'
-import tailwindConfig from '@/tailwind.config';
 /*
  ** Stuff to do
  *** On load generate random number to pick question
@@ -15,6 +14,12 @@ import tailwindConfig from '@/tailwind.config';
  *** Repeat
  *** States needed (question, loading, answer)
 */
+const ALPHABET = [ 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L',
+'M', 'N', 'O', 'P', 'Q', 'R',  'S', 'T', 'U', 'V', 'W', 'X',
+'Y', 'Z' ];
+const ALPHABET2 = ['a', 'b', 'c','d','e','f','g','h','i','j','k','l','m','n','o','p',
+'q','r','s','t','u','v','w','x','y','z'];
+
 export  default function Questions(){
     const [question, setQuestion] = useState();
     const [questionData, setQuestionData] = useState();
@@ -39,19 +44,43 @@ export  default function Questions(){
         const{data, error} = await supabase.from("question_data").select("*").eq("id",temp.id).single();
         setQuestionData(data);
     }
+    useEffect(() => {
+        window.addEventListener("keyup", handleKeyPress);
+    
+        return () => {
+          window.removeEventListener("keyup", handleKeyPress);
+        };
+      }, );
     if(loading){
         return(
+            <div>
+            <Header />
             <Loading />
+            </div>
         )
     
-    } 
+    }
+
+    
+
+    async function handleKeyPress(e){
+        let numOptions = questionData.data.options.length;
+        let value = ALPHABET.indexOf(e.key);
+        if(value == -1){
+            value = ALPHABET2.indexOf(e.key);
+        }
+        if(value >= 0 && value < numOptions){
+            submit(value);
+        }
+    }
     
     async function submit(ans){
         if(profile.id != null && ans != null){
             let oldQuestion = question;
             getQuestion();
-            await supabase.from("questions").
+            const{error} = await supabase.from("questions").
             insert({qID: oldQuestion.id, answer: ans, u_id: profile.id});
+            console.log(error);
             //Time to update personality values of user
             let option = questionData.data.options[parseInt(ans)];
             let traits = option.optionTraits;
@@ -72,14 +101,17 @@ export  default function Questions(){
             temp.personality = userTraits;
             setProfile(temp);
             await supabase.from("profiles").update({"personality": userTraits}).eq("id",profile.id);
+            await supabase
+            .rpc('update_user_q', {"user_id":profile.id});
+            console.log(error)
         }
      } 
-     let dummy = "";
+     let dummy = "-1";
     return(<div>
         <Header/>
         <div className ="mx-32">
         <Multiplechoice questionInfo={question} value = {dummy} setValue={submit} 
-        width = "w-2/5" />
+        width = "w-4/5" />
         </div>
     </div>
     );

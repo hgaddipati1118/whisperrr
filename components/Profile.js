@@ -65,10 +65,15 @@ export default function Profile(){
             <ProfileItem value = {profile.preferred_gender} valueTitle = "Preferred Genders" />
             <ProfileItem value = {profile.min_preferred_age} valueTitle = "Minimum age to date" />
             <ProfileItem value = {profile.max_preferred_age} valueTitle = "Maximum age to date" />
+            <ProfileItem value = {profile.q_score.toLocaleString("en-US")} valueTitle = "Q-Score" />
+            <ProfileItem value = {new String(profile.questions_answered).toLocaleString("en-US")} valueTitle = "Questions Answered" />
+            <ProfileItem value = {profile.average_rating == -1?"N/A":profile.average_rating} valueTitle = "Average Rating" />
         </div>
-        <div className = "bg-amber-700 ml-36 rounded-lg w-1/6 text-center text-size-5xl">
-        <Link className = "text-white" href="/updateProfile"> Edit Profile </Link>
+        
+        <Link className = "text-white" href="/updateProfile">
+        <div className = "bg-amber-700 ml-36 rounded-lg w-1/6 text-center text-size-5xl"> Edit Profile
         </div>
+        </Link>
         </div>
 
     )

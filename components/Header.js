@@ -15,7 +15,7 @@ export default function Header(){
      <Link className = "hover:text-blue-600 " href="/"> Chat </Link>
     <Link className = "hover:text-blue-600 " href="/profile"> Profile </Link>
     <Link className = "hover:text-blue-600" href="/questions"> Questions </Link>
-    <div className = "hover:text-blue-600"> History </div>
+    <Link className = "hover:text-blue-600" href="/history"> History </Link>
     <div className = "hover:text-blue-600">
             <button onClick={signout} > log out </button>
     </div> 
