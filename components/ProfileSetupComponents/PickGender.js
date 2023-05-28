@@ -1,5 +1,5 @@
 import genderOptions from '@/public/genderOptions';
-import ProfileSetUpStageButtons from "@/components/ProfileSetUpStageButtons.js";
+import ProfileSetUpStageButtons from "@/components/ProfileSetupComponents/ProfileSetUpStageButtons.js";
 import Multiplechoice from "@/components/Multiplechoice.js";
 export default function PickGender({moveNextStage, gender, setGender}){
     return(

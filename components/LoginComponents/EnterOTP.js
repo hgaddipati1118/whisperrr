@@ -1,5 +1,5 @@
 import Title from "@/components/Title";
-import LoginInputHeaders from "@/components/LoginInputHeaders";
+import LoginInputHeaders from "@/components/LoginComponents/LoginInputHeaders";
 import {useState} from "react";
 import { supabase } from "@/helpers/supabaseHelpers";
 export default function EnterOTP({sendOTP, setStage, setLoading, getUser}){

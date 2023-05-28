@@ -1,5 +1,5 @@
 import Title from "@/components/Title";
-import LoginInputHeaders from "@/components/LoginInputHeaders";
+import LoginInputHeaders from "@/components/LoginComponents/LoginInputHeaders";
 import {useState} from "react";
 export default function EnterEmail({email, setEmail, sendOTP, emailWork, setEmailWork}){
     [emailWork, setEmailWork] = useState("");

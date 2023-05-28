@@ -1,4 +1,4 @@
-import ProfileSetUpStageButtons from "@/components/ProfileSetUpStageButtons.js";
+import ProfileSetUpStageButtons from "@/components/ProfileSetupComponents/ProfileSetUpStageButtons.js";
 export default function PickAge({moveNextStage, age, ageError, checkAge}){
     
     return (

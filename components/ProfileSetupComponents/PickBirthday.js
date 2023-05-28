@@ -1,6 +1,6 @@
 
 import { format } from 'date-fns';
-import ProfileSetUpStageButtons from "@/components/ProfileSetUpStageButtons.js";
+import ProfileSetUpStageButtons from "@/components/ProfileSetupComponents/ProfileSetUpStageButtons.js";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import {useEffect, useState} from "react";

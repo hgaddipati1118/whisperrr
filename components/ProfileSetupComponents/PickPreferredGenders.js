@@ -1,6 +1,6 @@
 import prefGenderOptions from "@/public/prefGenderOptions";
 import Multiplecheckbox from "@/components/Multiplecheckbox";
-import ProfileSetUpStageButtons from "@/components/ProfileSetUpStageButtons.js";
+import ProfileSetUpStageButtons from "@/components/ProfileSetupComponents/ProfileSetUpStageButtons.js";
 export default function PickPreferredGenders({moveNextStage, preferred_gender, setPreferredGender}){
     return(
         <div>

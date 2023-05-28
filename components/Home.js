@@ -1,5 +1,4 @@
 import {supabase, refreshSession, getUserProfileData} from '@/helpers/supabaseHelpers';
-import Signout from '@/components/Signout';
 import Header from '@/components/Header';
 import Conversation from '@/components/Conversation';
 import Link from 'next/link';
@@ -31,7 +30,6 @@ export default function Home({user}){
             else{
                 setStage(1);
             }
-            console.log(stage);
         }
         setLoading(false);
     }

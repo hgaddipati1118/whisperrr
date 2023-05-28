@@ -9,7 +9,10 @@ import PickPreferredGenders from '@/components/ProfileSetupComponents/PickPrefer
 import PickAge from "@/components/ProfileSetupComponents/PickAge.js";
 import 'react-day-picker/dist/style.css';
 import PickBirthday from "@/components/ProfileSetupComponents/PickBirthday.js";
-import ProfileSetUpStageButtons from "@/components/ProfileSetUpStageButtons.js";
+import ProfileSetUpStageButtons from "@/components/ProfileSetupComponents/ProfileSetUpStageButtons.js";
+import {formatBday, formatGender, formatPreferredGender} from "@/helpers/profileDataHelpers.js";
+import ProfileItem from "@/components/ProfileItem";
+
 export default function ProfileSetup(){
     // Stage 0 = change birthday
     // Stage 1 = change gender
@@ -200,7 +203,7 @@ export default function ProfileSetup(){
               />
             )
         }
-        let allGood = "You've finished setting up your profile!";
+        let allGood = "Review your profile information";
         let notAllGood = "One or more details are still missing from your profile";
             //Finish profile
             if(stage == 5){
@@ -208,10 +211,29 @@ export default function ProfileSetup(){
                     <div>
                         
                 <div>
-                        <div className = "text-white text-center text-4xl py-5"> {(bday && (preferred_gender.length > 0) && 
+                        <div className = "text-white text-center text-2xl py-5"> {(bday && (preferred_gender.length > 0) && 
                         min_preferred_age && gender && max_preferred_age)?allGood:notAllGood}</div>
-                        <Link href = "/" className = "text-white text-center text-2xl"> 
-                        <div className = "mx-auto bg-amber-700 rounded-xl py-5 w-1/6 text-center">
+                        <div className ="flex justify-center">
+                        <ProfileItem value = {formatBday(bday)} valueTitle = "Birthday" />
+                        </div>
+                        <div className ="flex justify-center">
+                        <ProfileItem value = {formatGender(gender)} valueTitle = "Gender" />
+                        </div>
+                        <div className ="flex justify-center">
+                        <ProfileItem value = {formatPreferredGender(preferred_gender)} valueTitle = "Preferred Genders" />
+                        </div>
+                        <div className ="flex justify-center">
+                        <ProfileItem value = {min_preferred_age} valueTitle = "Minimum age to date" />
+                        </div>
+                        <div className ="flex justify-center">
+                        <ProfileItem value = {max_preferred_age} valueTitle = "Maximum age to date" />
+                        </div>
+                        
+                        
+                        
+                                 
+                        <Link href = "/" className = "text-white text-center text-xl"> 
+                        <div className = "mx-auto bg-amber-700 rounded-xl py-2 mt-2 w-1/6 text-center">
                         Save Profile 
                         </div>
                         </Link>
