@@ -7,7 +7,7 @@ export default function Multiplechoice({questionInfo, value, setValue, width}){
      value = {value} setValue = {(val) => setValue(val)} />)
     });
     return(
-        <div className = {"container " + width}>
+        <div className = {width}>
         <div className = "text-white text-xl mt-5 mb-3">
             {questionInfo.question}
         </div>

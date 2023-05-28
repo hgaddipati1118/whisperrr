@@ -15,12 +15,12 @@ export default function McbOption({option, index, value, setValue}){
         }
     }
     return(
-        <div className= {`flex ${((value.length > 0) && value.some(element => element == option.choiceVal))?"bg-cyan-800":"bg-cyan-400"} hover:bg-cyan-800 mb-5 border-orange-500 border-2 rounded-lg w-auto`}
+        <div className= {`flex ${((value.length > 0) && value.some(element => element == option.choiceVal))?"bg-cyan-800":"bg-cyan-400"} hover:bg-cyan-800 mb-5 border-orange-500 border-2 rounded-lg w-fit`}
         onClick = {() => updateValue(option.choiceVal)}>
-        <div className = "my-4 ml-4 border-2 border-black text-lg w-8 text-center bg-cyan-200">
+        <div className = "my-4 ml-4 px-2 border-2 border-black text-lg h-8 text-center bg-cyan-200">
             {ALPHABET[index]} 
         </div>
-        <div className="text-black text-lg my-4 align-middle ml-4">
+        <div className="text-black text-lg my-4 align-middle mx-4">
             {option.choiceName}
         </div>
         </div>

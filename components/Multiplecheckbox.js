@@ -7,7 +7,7 @@ export default function Multiplecheckbox({questionInfo, value, setValue}){
      value = {value} setValue = {(val) => setValue(val)} />)
     });
     return(
-        <div className = "container">
+        <div >
         <div className = "text-white text-xl mt-5 mb-3">
             {questionInfo.question}
         </div>

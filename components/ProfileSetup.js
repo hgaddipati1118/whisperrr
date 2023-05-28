@@ -2,14 +2,14 @@
 import {supabase, refreshSession, getUserProfileData} from '@/helpers/supabaseHelpers';
 import {useEffect, useState} from "react";
 import Loading from '@/components/Loading';
-import Multiplechoice from '@/components/Multiplechoice';
-import Multiplecheckbox from '@/components/Multiplecheckbox';
+import Link from 'next/link';
 import { format } from 'date-fns';
-import { DayPicker } from 'react-day-picker';
-import genderOptions from '@/public/genderOptions';
+import PickGender from "@/components/ProfileSetupComponents/PickGender.js";
+import PickPreferredGenders from '@/components/ProfileSetupComponents/PickPreferredGenders';
+import PickAge from "@/components/ProfileSetupComponents/PickAge.js";
 import 'react-day-picker/dist/style.css';
-import PickBirthday from "@/components/PickBirthday.js";
-import { move } from 'formik';
+import PickBirthday from "@/components/ProfileSetupComponents/PickBirthday.js";
+import ProfileSetUpStageButtons from "@/components/ProfileSetUpStageButtons.js";
 export default function ProfileSetup(){
     // Stage 0 = change birthday
     // Stage 1 = change gender
@@ -23,7 +23,7 @@ export default function ProfileSetup(){
     const[max_preferred_age, setMaxPreferredAge] = useState();
     const[min_preferred_age, setMinPreferredAge] = useState();
     const[preferred_gender, setPreferredGender] = useState([]);
-    const [selected, setSelected] = useState();
+    const [selected, setSelected] = useState(new Date(2002,2,23));
     const[profileLoaded, setProfileLoaded] = useState(false);
     const [minAgeError, setMinAgeError] = useState();
     const [maxAgeError, setMaxAgeError] = useState();
@@ -154,33 +154,15 @@ export default function ProfileSetup(){
         if(stage == 1){
             
             return(
-                <div className = "grid grid-cols-3 place-content-center">
-                <div className = "w-24 mt-32 justify-self-end">
-                    <img className = "flex-none" onClick = {() => moveNextStage(-1)} src = "left_chevron.png" />
-                </div>
-                <Multiplechoice questionInfo = {genderOptions} value = {gender} setValue = {(val) => setGender(val)} />
-                <div className = "w-24 mt-32">
-                    <img className = "flex-none" onClick = {() => moveNextStage(1)} src = "right_chevron.png" />
-                </div>
-                
-                </div>
+                <PickGender moveNextStage = {(inc) => moveNextStage(inc)}
+                gender = {gender} setGender = {(gender) => setGender(gender)} />
             )
         }
-        let temp = genderOptions;
-        temp.question = "Select the genders you're willing to date";
         //Enter preferred gender
         if(stage == 2){
             return(
-                <div className = "grid grid-cols-3 place-content-center">
-                <div className = "w-24 mt-32 justify-self-end">
-                    <img className = "flex-none" onClick = {() => moveNextStage(-1)} src = "left_chevron.png" />
-                </div>
-                <Multiplecheckbox questionInfo = {temp} value = {preferred_gender} setValue = {(val) => setPreferredGender(val)} />
-                <div className = "w-24 mt-32">
-                    <img className = "flex-none" onClick = {() => moveNextStage(1)} src = "right_chevron.png" />
-                </div>
-                
-                </div>
+                <PickPreferredGenders moveNextStage = {(inc) => moveNextStage(inc)} 
+                 preferred_gender={preferred_gender} setPreferredGender={(gender) => setPreferredGender(gender)}/>
             )
         }
 
@@ -196,27 +178,9 @@ export default function ProfileSetup(){
         }
         if(stage == 3){
             return (
-                <div>
-                                    <div className = "text-white text-xl text-center mt-5 mb-3">
-                    What is the lowest age you are willing to date?
-                </div>
-            <div className = "grid grid-cols-3 place-content-center">
-                <div className = "w-24 mt-32 justify-self-end">
-                    <img className = "flex-none" onClick = {() => moveNextStage(-1)} src = "left_chevron.png" />
-                </div>
-                <div>
-                <input type = "number" min="18" placeholder = "18" value = {min_preferred_age} 
-                onChange = {checkMinPreferredAge}
-                className="leading-none text-[250px] text-center 
-                bg-black text-gray-400 h-70 w-full" max="99" />
-                <div className="text-white text-center ml-5"> {minAgeError} </div>
-                </div>
-                <div className = "w-24 mt-32">
-                    <img className = "flex-none" onClick = {() => moveNextStage(1)} src = "right_chevron.png" />
-                </div>
-                
-            </div>
-            </div>
+              <PickAge moveNextStage = {(inc) => moveNextStage(inc)} age = {min_preferred_age}
+                ageError = {minAgeError} checkAge = {(e) => checkMinPreferredAge(e)}
+              />
             )
         }
 
@@ -231,28 +195,9 @@ export default function ProfileSetup(){
         }
         if(stage == 4){
             return (
-            <div>
-                                    <div className = "text-white text-xl text-center mt-5 mb-3">
-                    What is the highest age you are willing to date?
-                </div>
-            <div className = "grid grid-cols-3 place-content-center">
-                <div className = "w-24 mt-32 justify-self-end">
-                    <img className = "flex-none" onClick = {() => moveNextStage(-1)} src = "left_chevron.png" />
-                </div>
-                <div>
-                <input type = "number" min={min_preferred_age} placeholder = {min_preferred_age} 
-                value = {max_preferred_age} 
-                onChange = {checkMaxPreferredAge}
-                className="leading-none text-[250px] text-center 
-                bg-black text-gray-400 h-70 w-full" max="99" />
-                <div className="text-white text-center ml-5"> {maxAgeError} </div>
-                </div>
-                <div className = "w-24 mt-32">
-                    <img className = "flex-none" onClick = {() => moveNextStage(1)} src = "right_chevron.png" />
-                </div>
-                
-            </div>
-            </div>
+                <PickAge moveNextStage = {(inc) => moveNextStage(inc)} age = {max_preferred_age}
+                ageError = {maxAgeError} checkAge = {(e) => checkMaxPreferredAge(e)}
+              />
             )
         }
         let allGood = "You've finished setting up your profile!";
@@ -260,19 +205,18 @@ export default function ProfileSetup(){
             //Finish profile
             if(stage == 5){
                 return (
-                    <div className = "grid grid-cols-3 place-content-center">
-                        <div className = "w-24 mt-32 justify-self-end">
-                    <img className = "flex-none" onClick = {() => moveNextStage(-1)} src = "left_chevron.png" />
-                </div>
+                    <div>
+                        
                 <div>
                         <div className = "text-white text-center text-4xl py-5"> {(bday && (preferred_gender.length > 0) && 
                         min_preferred_age && gender && max_preferred_age)?allGood:notAllGood}</div>
                         <Link href = "/" className = "text-white text-center text-2xl"> 
-                        <div className = "mx-auto bg-amber-700 rounded-xl py-5 w-1/4 text-center">
+                        <div className = "mx-auto bg-amber-700 rounded-xl py-5 w-1/6 text-center">
                         Save Profile 
                         </div>
                         </Link>
                 </div>
+                <ProfileSetUpStageButtons back = {true} />
                 </div>
                 )
             }
