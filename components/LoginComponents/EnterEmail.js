@@ -42,8 +42,10 @@ export default function EnterEmail({email, setEmail, sendOTP, emailWork, setEmai
       }
 
     return(
-        <div className="mt-3">
+      <div className="flex h-screen">
+        <div className="container my-auto">
             <Title />
+            <div className = "flex justify-center mt-5">
             <div className = "container my-4 mx-auto bg-gray-700 pt-8 pb-4 w-1/2 rounded-2xl px-24">
                 <div className = "">
                 <LoginInputHeaders text = "Enter your Email" />
@@ -63,6 +65,8 @@ export default function EnterEmail({email, setEmail, sendOTP, emailWork, setEmai
             <div className = "flex-none bg-white rounded-full w-5 h-5 mx-5" />
         </div>
         </div>
+        </div>
+      </div>
       </div>
       );
 }

@@ -1,10 +1,10 @@
 import ProfileSetUpStageButtons from "@/components/ProfileSetupComponents/ProfileSetUpStageButtons.js";
-export default function PickAge({moveNextStage, age, ageError, checkAge}){
+export default function PickAge({moveNextStage, age, ageError, checkAge, title}){
     
     return (
         <div>
         <div className = "text-white text-xl text-center mt-5">
-            What is the lowest age you are willing to date?
+            {title}
         </div>
     <div className = "flex justify-center">
         <div>

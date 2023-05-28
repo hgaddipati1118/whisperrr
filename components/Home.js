@@ -6,7 +6,7 @@ import {useState, useEffect} from 'react';
 import Loading from '@/components/Loading';
 import Title from '@/components/Title';
 import ProfileSetup from '@/components/ProfileSetup';
-export default function Home({user}){
+export default function Home({user, setState}){
     //Stage 0: need to finish profile
     //Stage 1: No match so answer question
     //Stage 2: Has match so text
@@ -19,7 +19,9 @@ export default function Home({user}){
       }, []);
     async function getProfile(){
         setLoading(true);
-        let userProfile = await getUserProfileData(supabase)
+        let userProfile = await getUserProfileData(supabase);
+        console.log(userProfile)
+
         setProfile(userProfile);
         let profileKeys = ["bday", "gender", "min_preferred_age","max_preferred_age","preferred_gender"];
         console.log(userProfile);

@@ -70,7 +70,7 @@ export default function GiveFeedback({user, pNum, setStage}){
                 className = "bg-slate-700 text-white text-l w-1/2 h-48 my-3 place-content-center p-3" />
             </div>
             <div className = "flex place-content-center w-full">
-                <button className = "w-1/5 py-2 text-xl rounded-lg bg-orange-600 text-white" onClick = {submitFeedback} >
+                <button className = "w-fit px-3 py-2 text-xl rounded-lg bg-orange-600 text-white" onClick = {submitFeedback} >
                      Submit Feedback 
                 </button>
             </div>

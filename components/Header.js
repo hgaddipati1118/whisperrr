@@ -6,9 +6,13 @@ export default function Header(){
     const[showDropdown, setShowDropdown] = useState(false);
     //Used to sign user out
     async function signout(){
-        await refreshSession(supabase);
-        await supabase.auth.signOut();
-        window.location.reload();
+        let homeRegex = /http[\S]*\//
+        supabase.auth.signOut();
+        let temp = window.location.href;
+        if(!homeRegex.test(temp)){
+            window.location.reload();
+        }
+        window.location.href = temp.match(homeRegex)[0].replace("\null","");
     }
     let dropdown = <div onMouseOver={()=>setShowDropdown(true)} onMouseLeave={()=>setShowDropdown(false)}
     className = "absolute text-white text-xl bg-gray-800 p-2 border-1 border-gray-700 my-1 ml-3 w-28 hover:cursor-default">

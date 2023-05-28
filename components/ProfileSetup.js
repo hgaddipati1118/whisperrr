@@ -183,6 +183,7 @@ export default function ProfileSetup(){
             return (
               <PickAge moveNextStage = {(inc) => moveNextStage(inc)} age = {min_preferred_age}
                 ageError = {minAgeError} checkAge = {(e) => checkMinPreferredAge(e)}
+                title = "What is the lowest age you are willing to date?"
               />
             )
         }
@@ -200,6 +201,7 @@ export default function ProfileSetup(){
             return (
                 <PickAge moveNextStage = {(inc) => moveNextStage(inc)} age = {max_preferred_age}
                 ageError = {maxAgeError} checkAge = {(e) => checkMaxPreferredAge(e)}
+                title = "What is the highest age you are willing to date?"
               />
             )
         }
@@ -231,14 +233,15 @@ export default function ProfileSetup(){
                         
                         
                         
-                                 
-                        <Link href = "/" className = "text-white text-center text-xl"> 
-                        <div className = "mx-auto bg-amber-700 rounded-xl py-2 mt-2 w-1/6 text-center">
+                        <div className="flex justify-center"> 
+                        <button onClick = {()=>location.reload()} className = "text-white text-center text-xl"> 
+                        <div className = "mx-auto bg-amber-700 rounded-xl py-2 px-2 mt-2 w-fit text-center">
                         Save Profile 
                         </div>
-                        </Link>
+                        </button>
+                        </div>
                 </div>
-                <ProfileSetUpStageButtons back = {true} />
+                <ProfileSetUpStageButtons back = {true} moveNextStage={(inc) => moveNextStage(inc)} />
                 </div>
                 )
             }

@@ -39,15 +39,6 @@ export default function Login(){
         setStage(1);
     }
 
-
-    
-    async function checkOTP(){
-      if(await verifyOtp()){
-        getUser();
-      }
-      setLoading(false);
-    }
-
     async function getUser(){
       setLoading(true);
       while (typeof window == 'undefined') {
@@ -89,6 +80,6 @@ export default function Login(){
       );
     } else if (stage == 2){ //User logged in
       return(
-      <Home user = {user}> </Home>);
+      <Home user = {user} setState = {(stage) => setStage(stage)}> </Home>);
     }
   }
