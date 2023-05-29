@@ -38,7 +38,7 @@ export default function Profile(){
     return(
         <div>
             <Header />
-        <div className = "ml-36">
+        <div className = "ml-24">
             <div className = "text-3xl py-6 text-white"> Profile </div>
             <ProfileItem value = {profile.bday} valueTitle = "Birthday" />
             <ProfileItem value = {profile.gender} valueTitle = "Gender" />
@@ -51,7 +51,7 @@ export default function Profile(){
         </div>
         
         <Link className = "text-white" href="/updateProfile">
-        <div className = "bg-amber-700 ml-36 rounded-lg w-1/6 text-center text-size-5xl"> Edit Profile
+        <div className = "bg-amber-700 ml-24 rounded-lg w-fit p-2 text-center text-size-5xl"> Edit Profile
         </div>
         </Link>
         </div>

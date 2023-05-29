@@ -6,7 +6,9 @@ export default function PickPreferredGenders({moveNextStage, preferred_gender, s
         <div>
                 
                 <div className ="flex justify-center">
+                <div className ="w-2/3">
                 <Multiplecheckbox questionInfo = {prefGenderOptions} value = {preferred_gender} setValue = {(val) => setPreferredGender(val)} />
+                </div>
                 </div>
                 <ProfileSetUpStageButtons next = {true} back = {true} moveNextStage={(inc) => moveNextStage(inc)} />
                 

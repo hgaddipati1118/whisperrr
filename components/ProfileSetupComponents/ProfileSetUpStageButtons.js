@@ -1,5 +1,5 @@
 export default function ProfileSetupStageButtons({back, next, moveNextStage}){
-    let buttonCSS = "container w-1/12 mr-6 rounded-lg py-1 ";
+    let buttonCSS = "container w-fit mr-6 rounded-lg p-1 ";
     let background = "bg-orange-600"
     return(
         <div className = "flex justify-center mt-4">

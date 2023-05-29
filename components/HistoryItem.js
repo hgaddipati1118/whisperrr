@@ -9,20 +9,19 @@ export default function HistoryItem({data, uuid}){
     }
     return(
         <div className = "flex place-content-center"> 
-            <div className = "bg-amber-600 w-1/2 rounded-lg pl-8 mt-6">
+            <div className = "bg-amber-800 w-2/3 md:w-1/2 rounded-lg mb-6 px-8">
                 <div className = "mt-2">
-                    <div className = "flex h-8 items-end" >
-                        <div className = "text-2xl">
+                    <div className = "" >
+                        <div className = "text-m md:text-2xl">
                         {format(new Date(data.start_time), "PP")}&nbsp;-&nbsp;
-                        {format(new Date(data.end_time), "PP")}
-                        </div>
-                        <div className = "text-l pl-2">
-                            ({data.messages_sent.toLocaleString("en-US")} messages)
+                        {format(new Date(data.end_time), "PP")}&nbsp; <span className="text-black">
+                        ({data.messages_sent.toLocaleString("en-US")} messages)
+                        </span>
                         </div>
                     </div>
                 </div>
                 <div className="">
-                <StarRating fixed = {true} rating = {ratingGiven} size="text-8xl"  />
+                <StarRating fixed = {true} rating = {ratingGiven} size="text-4xl md:text-8xl"  />
                 </div>
                 <div className = "mb-2 mt-2">
                     {feedbackGiven}

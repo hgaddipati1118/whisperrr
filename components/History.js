@@ -16,7 +16,12 @@ export default function History(){
     return(
         <div>
             <Header />
+            <div className = "text-white text-2xl text-center my-3">
+            History
+            </div>
+            <div>
             {historyHTML}
+            </div>
         </div>
     )
 }

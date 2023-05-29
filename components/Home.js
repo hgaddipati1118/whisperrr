@@ -38,14 +38,14 @@ export default function Home({user, setState}){
     if(loading){
         return(
             <div>
-        <Title /> 
+        <Title tailwind ="text-center text-6xl" /> 
         <Loading />
         </div>);
     }
     if(stage == 0){
         return(
             <div>
-                <Title />
+                <Title tailwind ="text-4xl text-center" />
                 <ProfileSetup />
             </div>
         )
@@ -62,7 +62,7 @@ export default function Home({user, setState}){
         )
     } else if(stage == 2){
         return (
-        <div>
+        <div className = "w-screen overflow-x-hidden h-screen">
             <Header  />
             <Conversation user = {profile} setStage = {(stage) => setStage(stage)} />
         </div>

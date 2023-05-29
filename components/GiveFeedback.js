@@ -61,7 +61,7 @@ export default function GiveFeedback({user, pNum, setStage}){
                 </div>
             </div>
             <div>
-            <StarRating rating = {rating} setRating = {setRating} size="text-8xl" />
+            <StarRating rating = {rating} setRating = {setRating} size=" text-6xl md:text-8xl" />
             </div>
             <div className = "flex place-content-center w-full ">
                 <textarea

@@ -26,14 +26,14 @@ export default function Header(){
     </div>;
     return(
         <div>
-        <div className = "bg-gray-900 flex">
-            <div className = {`pl-2 py-2 ml-3 w-28 ${showDropdown?"bg-gray-700":""}`} onMouseOver={()=>setShowDropdown(true)}
+        <div className = "bg-gray-900 flex py-0.5 w-screen">
+            <div className = {`px-2 py-2 ml-3 w-28 ${showDropdown?"bg-gray-700":""}`} onMouseOver={()=>setShowDropdown(true)}
             onMouseLeave={()=>setShowDropdown(false)}>
-            <div className = "bg-white my-3 w-20 h-2 rounded-sm"/>
-            <div className = "bg-white my-3 w-20 h-2 rounded-sm"/>
-            <div className = "bg-white my-3 w-20 h-2 rounded-sm"/>
+            <div className = "bg-white my-1 w-12 h-1 rounded-sm"/>
+            <div className = "bg-white my-1 w-12 h-1 rounded-sm"/>
+            <div className = "bg-white my-1 w-12 h-1 rounded-sm"/>
             </div>
-           <Link href="/"> <Title tailwind = "mt-3 ml-5" /> </Link>
+           <Link href="/"> <Title tailwind = "ml-5 py-0.5 align-middle text-4xl" /> </Link>
         </div>
            {showDropdown?dropdown:<div className ="absolute h-5 w-32" onMouseOver = {()=>setShowDropdown(true)} /> }
         </div>

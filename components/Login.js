@@ -61,7 +61,7 @@ export default function Login(){
     if(loading){
       return(
         <div>
-        <Title />
+        <Title tailwind = "text-center text-6xl" />
         <Loading />
         </div>
       )

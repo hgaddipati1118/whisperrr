@@ -213,8 +213,10 @@ export default function ProfileSetup(){
                     <div>
                         
                 <div>
-                        <div className = "text-white text-center text-2xl py-5"> {(bday && (preferred_gender.length > 0) && 
+                    <div className ="flex justify-center">
+                        <div className = "text-white text-center text-2xl py-5 w-2/3"> {(bday && (preferred_gender.length > 0) && 
                         min_preferred_age && gender && max_preferred_age)?allGood:notAllGood}</div>
+                        </div>
                         <div className ="flex justify-center">
                         <ProfileItem value = {formatBday(bday)} valueTitle = "Birthday" />
                         </div>
@@ -234,11 +236,11 @@ export default function ProfileSetup(){
                         
                         
                         <div className="flex justify-center"> 
-                        <button onClick = {()=>location.reload()} className = "text-white text-center text-xl"> 
+                        <Link href="/home" className = "text-white text-center text-xl"> 
                         <div className = "mx-auto bg-amber-700 rounded-xl py-2 px-2 mt-2 w-fit text-center">
                         Save Profile 
                         </div>
-                        </button>
+                        </Link>
                         </div>
                 </div>
                 <ProfileSetUpStageButtons back = {true} moveNextStage={(inc) => moveNextStage(inc)} />

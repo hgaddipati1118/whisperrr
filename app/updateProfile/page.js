@@ -23,13 +23,13 @@ export default function App() {
     if(loading){
         return(
             <div>
-        <Title /> 
+        <Title tailwind = "text-6xl" /> 
         <Loading />
         </div>);
     }
         return(
             <div>
-                <Title />
+                <Title tailwind = "text-4xl text-center mt-3" />
                 <ProfileSetup />
             </div>
         )

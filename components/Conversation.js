@@ -10,13 +10,15 @@ import GiveFeedback from '@/components/GiveFeedback';
 
 export default function Conversation({user, setStage}){
     const[loading, setLoading] = useState(true);
-    const[messageHTML, setMessageHTML] = useState();
+    const[messageHTML, setMessageHTML] = useState([]);
     const[text, setText] = useState("");
     const[input, setInput] = useState("");
     const[conv_id, setConvId] = useState();
     const[pNum, setPNum] = useState(); // Whether p1 or p2;
     const[convoHappening, setConvoHappening] = useState(true);
     const messagesEndRef = useRef(null)
+    const messageHTMLRef = useRef();
+    messageHTMLRef.current = messageHTML;
     //To autoscroll to bottom
     const scrollToBottom = () => {
         messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
@@ -85,7 +87,9 @@ export default function Conversation({user, setStage}){
             let temp = data.map((msg, i)=>{
                 return <Message  key={msg.sent_at} message = {msg} user = {user} />
             });
-            if(messageHTML != temp){
+            console.log(messageHTMLRef.current, temp)
+            if(messageHTMLRef.current && (messageHTMLRef.current.length < temp.length)){
+                console.log("hi")
                 setMessageHTML(temp);
             }
         }
@@ -93,7 +97,7 @@ export default function Conversation({user, setStage}){
     }
 
     useEffect(() => {
-        const interval = setInterval(() => getMessages(), 1000);
+        const interval = setInterval(() => getMessages(), 3000);
         return () => {
         clearInterval(interval);
         };
@@ -111,14 +115,18 @@ export default function Conversation({user, setStage}){
     }
     if(convoHappening){
         return(
-            <div>
-                <div>
-                <div className="grid grid-cols-1 h-96 max-h-96 mx-32 mt-6 overflow-y-scroll flex flex-col-reverse">
+            <div className = "grid-cols-1">
+            <div className = "flex justify-center">
+                <div className = "w-5/6">
+                <div className=" mt-6  h-full max-h-full overflow-y-scroll overflow-x-hidden flex flex-col">
                 {messageHTML}
                 <div ref={messagesEndRef} />
                 </div>
-                <div className = "flex mx-32 mt-6 bg-slate-700 pl-2">
-                <input className = "bg-slate-700 w-11/12 text-white py-2" placeholder = "type message"
+                </div>
+            </div>
+            <div className = "flex place-self-end justify-center w-full my-6">
+                <div className ="bg-slate-700 pl-2 w-5/6 flex">
+                <input className = "bg-slate-700 w-full text-white py-2" placeholder = "type message"
                 type ="text" value = {text} onChange = {updateText} />
                 <button onClick = {sendMessage} className = "h-full w-12  ml-8"> 
                 <FontAwesomeIcon className = "h-8 mt-2 " icon={faRocket} /> </button>

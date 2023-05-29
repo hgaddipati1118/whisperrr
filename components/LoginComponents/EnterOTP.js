@@ -53,9 +53,10 @@ export default function EnterOTP({sendOTP, setStage, setLoading, getUser}){
     return(
       <div className="flex h-screen">
       <div className="container my-auto">
-        <Title />
-        <div className = "container mx-auto bg-gray-700 pt-8 pb-4 w-1/2 my-4 px-24 rounded-2xl">
-      <LoginInputHeaders text = "Enter One Time Password (OTP) from Email" />
+        <Title tailwind = "text-center" />
+        <div className = "flex justify-center mt-5">
+        <div className = "my-4 bg-gray-700 pt-8 pb-4 rounded-2xl w-3/4 md:w-1/2 px-12 md:px-24">
+      <LoginInputHeaders text = "Enter One Time Password (OTP)" />
       <input className="w-full h-10 rounded-lg px-3 mb-2" type="text"
       onChange = {updateOTP}
       value = {token}
@@ -73,6 +74,7 @@ export default function EnterOTP({sendOTP, setStage, setLoading, getUser}){
       <div onClick = {() => setStage(0)}
        className = "flex-none bg-white rounded-full w-5 h-5 ml-6 " />
       <div className = "flex-none bg-gray-400 rounded-full w-5 h-5 mx-5" />
+      </div>
       </div>
       </div>
       </div>
