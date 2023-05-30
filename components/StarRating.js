@@ -7,7 +7,7 @@ export default function StarRating ({rating, setRating, size, fixed}){
         {[...Array(5)].map((star, index) => {
           index += 1;
           return (
-              <span className={(index <= rating? "text-yellow-300" :  "text-gray-500") +
+              <span key ={index} className={(index <= rating? "text-yellow-300" :  "text-gray-500") +
                " " + size}>&#9733;</span>
 
           );
@@ -27,7 +27,7 @@ export default function StarRating ({rating, setRating, size, fixed}){
               onMouseEnter={() => setHover(index)}
               onMouseLeave={() => setHover(rating)}
             >
-              <span className={(((index <= rating) && (index <= hover)) ? "text-yellow-300" : 
+              <span key = {index} className={(((index <= rating) && (index <= hover)) ? "text-yellow-300" : 
               (((index <= hover) || (index <= rating)) ? "text-gray-300": "text-gray-500")) +
                " " + size}>&#9733;</span>
             </button>
