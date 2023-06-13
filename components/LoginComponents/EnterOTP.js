@@ -53,7 +53,7 @@ export default function EnterOTP({sendOTP, setStage, setLoading, getUser}){
     return(
       <div className="flex h-screen">
       <div className="container my-auto">
-        <Title tailwind = "text-center" />
+        <Title tailwind = "text-center text-6xl" />
         <div className = "flex justify-center mt-5">
         <div className = "my-4 bg-gray-700 pt-8 pb-4 rounded-2xl w-3/4 md:w-1/2 px-12 md:px-24">
       <LoginInputHeaders text = "Enter One Time Password (OTP)" />
@@ -65,9 +65,9 @@ export default function EnterOTP({sendOTP, setStage, setLoading, getUser}){
       />
       <div className = "text-blue-600 mb-2"> {otpWork} </div>
       <div className = "flex justify-center">
-        <button className = "flex-none container py-1 w-1/3 rounded-lg bg-orange-600" 
+        <button className = "flex-none container py-1 px-3 w-fit rounded-lg bg-orange-600" 
         onClick = {sendOTP}> Resend Email </button>
-        <button className = "flex-none container py-1 ml-8 w-1/3 rounded-lg bg-orange-600"  
+        <button className = "flex-none container py-1 px-3 ml-8 w-fit rounded-lg bg-orange-600"  
         onClick = {checkOTP}> Login </button>
       </div>
       <div className = "flex justify-center mt-5">

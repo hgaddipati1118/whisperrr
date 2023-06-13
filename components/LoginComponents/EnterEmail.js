@@ -44,7 +44,7 @@ export default function EnterEmail({email, setEmail, sendOTP, emailWork, setEmai
     return(
       <div className="flex h-screen w-screen  md:visible">
         <div className="container my-auto">
-            <Title tailwind = "text-center" />
+            <Title tailwind = "text-center text-6xl" />
             <div className = "flex justify-center mt-5">
             <div className = " my-4 bg-gray-700 pt-8 pb-4 rounded-2xl w-3/4 md:w-1/2 px-12 md:px-24">
                 <div className = "">
@@ -56,7 +56,7 @@ export default function EnterEmail({email, setEmail, sendOTP, emailWork, setEmai
         />
         <div className = "text-blue-600 mb-2 w-full"> {emailWork} </div>
         <div className = "flex justify-center">
-            <button className = "container w-1/3 rounded-lg py-1 bg-orange-600" 
+            <button className = "container w-fit rounded-lg py-1 px-3 bg-orange-600" 
             onClick = {checkOTP}> GET OTP</button>
         </div>
         
