@@ -18,9 +18,9 @@ export default function EnterEmail({email, setEmail, sendOTP, emailWork, setEmai
     if(email){
       if(!validEmail.test(email)){
         setEmailWork("enter valid email"); // email entered not valid
-      } else if(!validGatechEmail.test(email)){
+      } /*else if(!validGatechEmail.test(email)){
         setEmailWork("enter a @gmail.com email"); // email entered not Georgia Tech
-      } else{
+      }*/ else{
         setEmailWork("OTP sent to your inbox"); // VALID EMAIL!!!
         return true;
       }
