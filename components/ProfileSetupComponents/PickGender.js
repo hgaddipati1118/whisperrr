@@ -6,7 +6,7 @@ export default function PickGender({moveNextStage, gender, setGender}){
         <div>
             <div className ="flex justify-center">
                 <div className ="w-2/3">
-                <Multiplechoice questionInfo = {genderOptions} profile = {profile} value = {gender} setValue = {(val) => setGender(val)} />
+                <Multiplechoice questionInfo = {genderOptions} profile = {true} value = {gender} setValue = {(val) => setGender(val)} />
             </div>
             </div>
             <ProfileSetUpStageButtons next = {true} back = {true} moveNextStage={(inc) => moveNextStage(inc)} />
