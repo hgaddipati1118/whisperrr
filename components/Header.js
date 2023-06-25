@@ -12,6 +12,7 @@ export default function Header(){
         if(!homeRegex.test(temp)){
             window.location.reload();
         }
+        localStorage.otpGeneratedTime = null;
         window.location.href = temp.match(homeRegex)[0].replace("\null","");
     }
     let dropdown = <div onMouseOver={()=>setShowDropdown(true)} onMouseLeave={()=>setShowDropdown(false)}

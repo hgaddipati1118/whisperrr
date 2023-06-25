@@ -48,6 +48,15 @@ export default function Login(){
       if(!error){
         setStage(2);
         setUser(data.user);
+      }else{
+        if(localStorage.otpGeneratedTime != null){
+          let otpGeneratedTime = Date.parse(localStorage.otpGeneratedTime);
+          if((((new Date()).getTime() - otpGeneratedTime)/1000) < (10 * 60)){
+            setStage(1);
+          } else{
+            localStorage.otpGeneratedTime = null;
+          }
+        }
       }
       setLoading(false);
     }

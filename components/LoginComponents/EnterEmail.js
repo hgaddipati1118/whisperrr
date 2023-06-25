@@ -30,6 +30,7 @@ export default function EnterEmail({email, setEmail, sendOTP, emailWork, setEmai
 
   function checkOTP(){
     if(updateEmailWork()){
+        localStorage.otpGeneratedTime = new Date();
         sendOTP();
     }
   }
@@ -37,7 +38,7 @@ export default function EnterEmail({email, setEmail, sendOTP, emailWork, setEmai
     // Code to make enter key work
     function checkEnter(e){
         if(e.key == "Enter"){
-            sendOTP();
+            checkOTP();
         }
       }
 

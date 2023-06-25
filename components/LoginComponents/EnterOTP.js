@@ -66,7 +66,7 @@ export default function EnterOTP({sendOTP, setStage, setLoading, getUser}){
       <div className = "text-blue-600 mb-2"> {otpWork} </div>
       <div className = "flex justify-center">
         <button className = "flex-none container py-1 px-3 w-fit rounded-lg bg-orange-600" 
-        onClick = {sendOTP}> Resend Email </button>
+        onClick = {() => setStage(0)}> Resend Email </button>
         <button className = "flex-none container py-1 px-3 ml-8 w-fit rounded-lg bg-orange-600"  
         onClick = {checkOTP}> Login </button>
       </div>
