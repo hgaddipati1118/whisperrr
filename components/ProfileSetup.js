@@ -7,7 +7,6 @@ import { format } from 'date-fns';
 import PickGender from "@/components/ProfileSetupComponents/PickGender.js";
 import PickPreferredGenders from '@/components/ProfileSetupComponents/PickPreferredGenders';
 import PickAge from "@/components/ProfileSetupComponents/PickAge.js";
-import 'react-day-picker/dist/style.css';
 import PickBirthday from "@/components/ProfileSetupComponents/PickBirthday.js";
 import ProfileSetUpStageButtons from "@/components/ProfileSetupComponents/ProfileSetUpStageButtons.js";
 import {formatBday, formatGender, formatPreferredGender} from "@/helpers/profileDataHelpers.js";
