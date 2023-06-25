@@ -43,6 +43,14 @@ export default function Conversation({user, setStage}){
         setText(e.target.value);
         setInput(profanity.censor(e.target.value));
     }
+
+    function handleKeyPress(e){
+        console.log(e);
+        if(e.key == "Enter"){
+            sendMessage();
+        }
+    }
+
     async function sendMessage(){
         if(text != ""){
             setText("");
@@ -77,6 +85,9 @@ export default function Conversation({user, setStage}){
     }
 
     async function getMessages(){
+        if(!convoHappening){
+            return;
+        }
         setConvId(user["conv_id"]);
         const { data, error } = await supabase
         .from('messages')
@@ -115,8 +126,8 @@ export default function Conversation({user, setStage}){
     }
     if(convoHappening){
         return(
-            <div className = "grid-cols-1">
-            <div className = "flex justify-center">
+            <div className = "grid-cols-1 h-screen">
+            <div className = "flex h-4/5 justify-center">
                 <div className = "w-5/6">
                 <div className=" mt-6  h-full max-h-full overflow-y-scroll overflow-x-hidden flex flex-col">
                 {messageHTML}
@@ -124,10 +135,10 @@ export default function Conversation({user, setStage}){
                 </div>
                 </div>
             </div>
-            <div className = "flex place-self-end justify-center w-full my-6">
+            <div className = "flex place-self-end justify-center w-full py-6">
                 <div className ="bg-slate-700 pl-2 w-5/6 flex">
                 <input className = "bg-slate-700 w-full text-white py-2" placeholder = "type message"
-                type ="text" value = {text} onChange = {updateText} />
+                type ="text" value = {text} onChange = {updateText} onKeyUp = {handleKeyPress} />
                 <button onClick = {sendMessage} className = "h-full w-12  ml-8"> 
                 <FontAwesomeIcon className = "h-8 mt-2 " icon={faRocket} /> </button>
                 </div>

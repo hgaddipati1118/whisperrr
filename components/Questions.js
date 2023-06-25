@@ -109,9 +109,9 @@ export  default function Questions(){
      let dummy = "-1";
     return(<div className = "w-content h-content pb-6 overflow-hidden">
         <Header/>
-        <div className ="mx-4 md:mx-24">
+        <div className ="px-8 md:px-24">
         <Multiplechoice questionInfo={question} value = {dummy} setValue={submit} 
-        width = "w-2/3" />
+        width = " w-11/12 md:w-2/3" />
         </div>
     </div>
     );

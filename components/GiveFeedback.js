@@ -8,36 +8,42 @@ export default function GiveFeedback({user, pNum, setStage}){
     const[feedbackError, setFeedbackError] = useState();
     const[loading, setLoading] = useState(false);
     const[rating, setRating] = useState(0);
-
+    console.log(pNum)
     async function submitFeedback(){
         if(rating == 0){
             setFeedbackError("Please give a star rating");
-        }else if(feedback.trim().split(/\s+/).length < 10){
+        }else if((feedback == null) || feedback.trim().split(/\s+/).length < 10){
             setFeedbackError("Write a review of at least 10 words");
         }else{
             setFeedbackError();
             setLoading(true);
             let convID = user["conv_id"];
             console.log(convID)
+            console.log(pNum)
             if(pNum == 1){
-                await supabase.from("history")
+                const{data,error} = await supabase.from("history")
                                 .update({"rating_1":rating,
                                          "feedback_1": feedback})
-                                .eq("id",convID);
+                                .eq("conv_id",convID);
 
                 await supabase.from("profiles")
-                .update({"in_conversation":false})
+                .update({"in_conversation":false,
+                "conv_id": null})
                 .eq("id",user["id"]);
                 setStage(1);
 
+                console.log(data, error);
+
             } else if(pNum == 2){
+                console.log("HERE")
+                console.log(convID)
                 await supabase.from("history")
                                 .update({"rating_2":rating,
                                          "feedback_2": feedback})
-                                .eq("id",convID);
-                await supabase.from("profiles")
+                                .eq("conv_id",convID);
+                const{data,error} = await supabase.from("profiles")
                 .update({"in_conversation":false,
-                         "conv_id": ""})
+                         "conv_id": null})
                 .eq("id",user["id"]);
                 setStage(1);
 

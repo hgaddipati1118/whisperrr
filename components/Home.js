@@ -51,11 +51,11 @@ export default function Home({user, setState}){
         )
     } else if (stage == 1) {
         return(
-            <div className="grid grid-cols-1">
+            <div className="grid grid-cols-1 justify-items-center">
                 <Header />
-                <div className = "text-white text-center text-2xl py-6"> Right now we do not have a match for you :(</div>
-                <div className = "text-white text-center text-xl w-1/3 mx-auto"> To improve your chances of getting a match answer some questions</div>
-                <Link className="justify-self-center bg-amber-700 w-1/3 mx-auto my-6 
+                <div className = "text-white text-center text-xl w-2/3 md:text-2xl py-6"> Right now we do not have a match for you :(</div>
+                <div className = "text-white text-center text-l md:text-xl w-2/3 md:w-1/3 mx-auto"> To improve your chances of getting a match answer some questions</div>
+                <Link className="justify-self-center bg-amber-700 w-2/3 md:w-1/3 mx-auto my-6 
                 py-3 rounded-lg text-xl text-center text-white" 
                 href = "/questions"> Answer questions </Link>
             </div>

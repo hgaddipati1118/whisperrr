@@ -20,7 +20,7 @@ export default function McOption({option, index, value, setValue}){
         <div className = "my-4 ml-4 px-2 border-2 border-black text-lg h-8 text-center bg-cyan-200">
             {ALPHABET[index]} 
         </div>
-        <div className="text-black text-lg my-4 align-middle mx-4">
+        <div className="text-black text-m my-4 align-middle mx-4">
             {option.choiceName}
         </div>
         </div>

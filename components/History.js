@@ -6,7 +6,7 @@ export default function History(){
     const[historyHTML, setHistoryHTML] = useState();
     async function getHistory(){
         let uuid = await getUserProfileData(supabase)["id"];
-        const {data, error} = await supabase.from("history").select("*").order('end_time', { ascending: true });
+        const {data, error} = await supabase.from("history").select("*").order('end_time', { ascending: false });
         setHistoryHTML(data.map((element,i) => <HistoryItem data = {element} uuid = {uuid} key={i} />));
     }
 
@@ -16,7 +16,7 @@ export default function History(){
     return(
         <div>
             <Header />
-            <div className = "text-white text-2xl text-center my-3">
+            <div className = "text-white text-4xl text-center my-3">
             History
             </div>
             <div>
